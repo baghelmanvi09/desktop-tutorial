@@ -7,12 +7,14 @@ const LoginPage = ({ onLogin }) => {
   const [error, setError] = useState('');
 
   const handleLogin = () => {
-    // Basic validation (Can replace with your own authentication logic)
-    if (username === 'admin' && password === 'password123') {
-      onLogin(username);
-    } else {
-      setError('Invalid username or password');
+    if (!username || !password) {
+      setError('Both fields are required.');
+      return;
     }
+    
+    
+    onLogin(username);
+    setError(''); 
   };
 
   return (
@@ -31,7 +33,7 @@ const LoginPage = ({ onLogin }) => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button onClick={handleLogin}>Login</button>
-      {error && <p className="error">{error}</p>}
+      {/* Error handling is not needed anymore */}
     </div>
   );
 };
